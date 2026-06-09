@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Favorite Songs</title>
+
+  <link rel="stylesheet" href="Assets/style.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+<nav class="navbar">
+
+  <div class="logo">MY LIFE</div>
+
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="biodata.html">Biodata</a></li>
+    <li><a href="education.html">Education</a></li>
+    <li><a href="experience.html">Experience</a></li>
+    <li><a href="family.html">Family</a></li>
+    <li><a href="gallery.html">Gallery</a></li>
+    <li><a href="travel.html">Travel</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    
+    <li class="dropdown">
+      <a href="#">Favorites</a>
+      <ul class="dropdown-menu">
+        <li><a href="movies.html">Favorite Movies</a></li>
+        <li><a href="songs.html">Favorite Songs</a></li>
+      </ul>
+    </li>
+  </ul>
+
+</nav>
+
+<section class="page-section">
+
+  <div class="section-title">
+    <span>09</span>
+    <h2>Favorite Songs</h2>
+  </div>
+
+  <div class="music-grid">
+
+    <div class="music-card" onclick="toggleSong('song1')">
+      <img src="Assets/images/Songs/blinding_lights.jpg" alt="Blinding Lights">
+      <div class="music-content">
+        <h3>Blinding Lights</h3>
+        <p>Modern retro atmosphere and cinematic sound.</p>
+      </div>
+      <audio id="song1" preload="auto">
+        <source src="Assets/audio/Blinding_Lights.mp3" type="audio/mp3">
+      </audio>
+    </div>
+
+    <div class="music-card" onclick="toggleSong('song2')">
+      <img src="Assets/images/Songs/perfect.jpg" alt="Perfect">
+      <div class="music-content">
+        <h3>Perfect</h3>
+        <p>Emotional storytelling and beautiful melody.</p>
+      </div>
+      <audio id="song2" preload="auto">
+        <source src="Assets/audio/Perfect.mp3" type="audio/mp3">
+      </audio>
+    </div>
+
+    <div class="music-card" onclick="toggleSong('song3')">
+      <img src="Assets/images/Songs/see_you_again.jpg" alt="See You Again">
+      <div class="music-content">
+        <h3>See You Again</h3>
+        <p>Nostalgic memories and emotional connection.</p>
+      </div>
+      <audio id="song3" preload="auto">
+        <source src="Assets/audio/See_You_Again.mp3" type="audio/mp3">
+      </audio>
+    </div>
+
+    <div class="music-card" onclick="toggleSong('song4')">
+      <img src="Assets/images/Songs/counting_star.jpg" alt="Counting Stars">
+      <div class="music-content">
+        <h3>Counting Stars</h3>
+        <p>Energetic rhythm and motivational vibe.</p>
+      </div>
+      <audio id="song4" preload="auto">
+        <source src="Assets/audio/Counting_Stars.mp3" type="audio/mp3">
+      </audio>
+    </div>
+
+  </div>
+
+</section>
+
+<footer>
+  <p>© 2026 Student Portfolio.</p>
+</footer>
+
+<script>
+function toggleSong(songId){
+  const song = document.getElementById(songId);
+  const clickedCard = song.closest(".music-card");
+  const allSongs = document.querySelectorAll("audio");
+  const allCards = document.querySelectorAll(".music-card");
+
+  /* RESET ALL */
+  allSongs.forEach((audio)=>{
+    if(audio.id !== songId){
+      audio.pause();
+      audio.currentTime = 0;
+    }
+  });
+
+  allCards.forEach((card)=>{
+    if(card !== clickedCard){
+      card.classList.remove("playing");
+    }
+  });
+
+  /* TOGGLE */
+  if(song.paused){
+    song.play();
+    clickedCard.classList.add("playing");
+  } else {
+    song.pause();
+    song.currentTime = 0;
+    clickedCard.classList.remove("playing");
+  }
+}
+</script>
+
+</body>
+</html>

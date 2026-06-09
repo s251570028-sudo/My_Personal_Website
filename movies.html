@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Favorite Movies</title>
+
+  <!-- CSS  -->
+  <link rel="stylesheet" href="Assets/style.css">
+
+  <!-- GOOGLE FONT -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+<nav class="navbar">
+
+  <div class="logo">MY LIFE</div>
+
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="biodata.html">Biodata</a></li>
+    <li><a href="education.html">Education</a></li>
+    <li><a href="experience.html">Experience</a></li>
+    <li><a href="family.html">Family</a></li>
+    <li><a href="gallery.html">Gallery</a></li>
+    <li><a href="travel.html">Travel</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    
+    <!-- DROPDOWN MENU  -->
+    <li class="dropdown">
+      <a href="#">Favorites</a>
+      <ul class="dropdown-menu">
+        <li><a href="movies.html">Favorite Movies</a></li>
+        <li><a href="songs.html">Favorite Songs</a></li>
+      </ul>
+    </li>
+  </ul>
+
+</nav>
+
+<section class="page-section">
+
+  <div class="section-title">
+    <span>08</span>
+    <h2>Favorite Movies</h2>
+  </div>
+
+  <div class="card-container">
+
+    <!-- INTERSTELLAR -->
+    <div class="movie-card" onclick="toggleVideo('movie1')">
+      <!-- Added muted attribute for browser compliance, and placeholder posters -->
+      <video playsinline class="movie-video" id="movie1" >
+        <source src="Assets/movie/Interstellar.mp4" type="video/mp4">
+      </video>
+      <div class="movie-content">
+        <h3>Interstellar</h3>
+        <p>Sci-fi masterpiece with emotional storytelling.</p>
+      </div>
+    </div>
+
+    <!-- SPIDER MAN -->
+    <div class="movie-card" onclick="toggleVideo('movie2')">
+      <video playsinline class="movie-video" id="movie2" >
+        <source src="Assets/movie/spider_man.mp4" type="video/mp4">
+      </video>
+      <div class="movie-content">
+        <h3>Spider-Man</h3>
+        <p>Inspiring hero journey and cinematic visuals.</p>
+      </div>
+    </div>
+
+    <!-- JOHN WICK -->
+    <div class="movie-card" onclick="toggleVideo('movie3')">
+      <video playsinline class="movie-video" id="movie3" >
+        <source src="Assets/movie/john_wick.mp4" type="video/mp4">
+      </video>
+      <div class="movie-content">
+        <h3>John Wick</h3>
+        <p>Stylish action scenes and visual atmosphere.</p>
+      </div>
+    </div>
+
+    <!-- AVENGERS -->
+    <div class="movie-card" onclick="toggleVideo('movie4')">
+      <video playsinline class="movie-video" id="movie4" >
+        <source src="Assets/movie/avengers_endgame.mp4" type="video/mp4">
+      </video>
+      <div class="movie-content">
+        <h3>Avengers Endgame</h3>
+        <p>Epic storytelling and emotional moments.</p>
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+<footer>
+  <p>© 2026 Student Portfolio.</p>
+</footer>
+
+<script>
+function toggleVideo(videoId){
+  const video = document.getElementById(videoId);
+  const clickedCard = video.closest(".movie-card");
+  const allVideos = document.querySelectorAll("video");
+  const allCards = document.querySelectorAll(".movie-card");
+
+  /* STOP OTHER VIDEOS */
+  allVideos.forEach((vid)=>{
+    if(vid.id !== videoId){
+      vid.pause();
+      vid.currentTime = 0;
+    }
+  });
+
+  /* REMOVE ACTIVE STATE */
+  allCards.forEach((card)=>{
+    if(card !== clickedCard){
+      card.classList.remove("playing");
+    }
+  });
+
+  /* TOGGLE PLAY / PAUSE */
+  if(video.paused){
+    video.play();
+    clickedCard.classList.add("playing");
+  } else {
+    video.pause();
+    video.currentTime = 0;
+    clickedCard.classList.remove("playing");
+  }
+
+  /* REMOVE EFFECT WHEN VIDEO ENDS */
+  video.onended = function(){
+    clickedCard.classList.remove("playing");
+  };
+}
+</script>
+
+</body>
+</html>
